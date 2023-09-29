@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+  <title>E-commerce</title>
+</head>
+
+<body>
+
+
+  <br>
+  <select id="categoryFilter" class="form-select">
+    <option value="all" class="">Todas las categorías</option>
+    <option value="electronics" class="text-primary">Electrónica</option>
+    <option value="jewelery" class="text-danger">Joyería</option>
+    <option value="men's clothing" class="text-success">Ropa de hombre</option>
+    <option value="women's clothing" class="text-info">Ropa de mujer</option>
+  </select>
+<br>
+
+  
+  <select id="orderDropdown" class="form-select-sm">
+    <option value="">Ordenar por</option>
+    <option value="asc">Precio ascendente</option>
+    <option value="desc">Precio descendente</option>
+  </select>
+
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <header>
+    <nav class="navbar navbar-light bg-dark min-vw-100">
+      <h2 class="p-3 text-white">Prueba E-commerce</h2>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#modal">
+            <i class="bi bi-cart mx-5" id="carritoContenedor">0</i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="row mt-5" id="contenedor"></div>
+  </main>
+
+
+  <div class="container-xl">
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Carrito</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="vaciarCarrito">
+              Vaciar Carrito
+            </button>
+            <button type="button" id="procesarCompra" class="btn btn-primary">
+              Continuar Compra
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+
+            <span class="price">Precio total:</span>
+            <p class="text-center" id="precioTotal"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <h1>Agregar producto</h1>
+  <br><br><br><br><br>
+  <form id="nuevoProductoForm">
+    <div class="form-group">
+      <label for="titulo">Título del producto:</label>
+      <input type="text" class="form-control" id="titulo" placeholder="Título" required>
+    </div>
+    <div class="form-group">
+      <label for="precio">Precio del producto:</label>
+      <input type="text" class="form-control" id="precio" placeholder="Precio" required>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción del producto:</label>
+      <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="imagen">URL de la imagen del producto:</label>
+      <input type="url" class="form-control" id="imagen" placeholder="URL de la imagen" required>
+    </div>
+    <div class="form-group">
+      <label for="categoria">Categoría del producto:</label>
+      <input type="text" class="form-control" id="categoria" placeholder="Categoría" required>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Agregar Producto</button>
+  </form>
+  
+
+  <br><br><br><br><br>
+  <h1>Actualizar producto</h1>
+  <form id="actualizarProductoForm">
+    <div class="form-group">
+      <label for="idProducto">ID del Producto a Actualizar:</label>
+      <input type="text" class="form-control" id="idProducto" placeholder="ID del Producto" required>
+    </div>
+    <div class="form-group">
+      <label for="nuevoTitulo">Nuevo Título del Producto:</label>
+      <input type="text" class="form-control" id="nuevoTitulo" placeholder="Nuevo Título" required>
+    </div>
+    <div class="form-group">
+      <label for="nuevoPrecio">Nuevo Precio del Producto:</label>
+      <input type="text" class="form-control" id="nuevoPrecio" placeholder="Nuevo Precio" required>
+    </div>
+    <div class="form-group">
+      <label for="nuevaDescripcion">Nueva Descripción del Producto:</label>
+      <textarea class="form-control" id="nuevaDescripcion" rows="3" placeholder="Nueva Descripción" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="nuevaImagen">Nueva URL de la Imagen del Producto:</label>
+      <input type="url" class="form-control" id="nuevaImagen" placeholder="Nueva URL de la Imagen" required>
+    </div>
+    <div class="form-group">
+      <label for="nuevaCategoria">Nueva Categoría del Producto:</label>
+      <input type="text" class="form-control" id="nuevaCategoria" placeholder="Nueva Categoría" required>
+    </div>
+    <button type="submit" class="btn btn-warning">Actualizar Producto</button>
+  </form>
+  
+
+
+
+<br><br><br><br><br>
+<h1>Eliminar producto</h1>
+  <form id="eliminarProductoForm">
+    <div class="form-group">
+      <label for="idProductoEliminar">ID del Producto a Eliminar:</label>
+      <input type="text" class="form-control" id="idProductoEliminar" placeholder="ID del Producto" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Eliminar Producto</button>
+  </form>
+  
+  
+  
+
+
+
+
+
+  <script src="app.js"></script>
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+
+</html>
